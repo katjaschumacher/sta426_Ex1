@@ -1,0 +1,56 @@
+---
+title: "Exercise 1"
+format: html
+editor: visual
+---
+
+## Exercise 1
+
+### Generating Values
+
+In the first Step, we generate 100 values with log-normal distribution mu=5 and sigma = 0.5
+
+```{r}
+values <- rlnorm(100, meanlog = 5, sdlog = 0.5)
+```
+
+### Linear Histogram
+
+```{r}
+library(ggplot2)
+ggplot(data = data.frame(values), aes(x = values)) +
+  geom_histogram() + 
+  labs(title = "Histogram", x = "Values log scale", y = "Frequency")
+
+```
+
+### Log Histogram
+
+```{r}
+ggplot(data = data.frame(values), aes(x = values)) +
+  geom_histogram() + 
+  labs(title = "Histogram", x = "Values log scale", y = "Frequency") +
+  scale_x_log10()
+```
+
+### Violin Plot
+
+```{r}
+ggplot(data = data.frame(values), aes(x = " ", y = values)) +
+  geom_violin() +
+  labs(title = "Violin Plot", y = "Values")
+```
+
+### Summary
+
+Mean of the sampled values:
+
+```{r}
+mean(values)
+```
+
+Standard deviation of the sampled values:\`
+
+```{r}
+sd(values)
+```
